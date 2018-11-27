@@ -84,20 +84,25 @@ public class Athletes {
 	}
 	
 
-
+	/**
+	 * on parcours la liste des epreuves et on regarde les medailles gagner a cette epreuves
+	 * des que le nom de l'epreuve de la medaille gagner correspond au nom de l'epreuve on affiche son resultat et on passe le boolean win a true
+	 * si le boolean est a false sur cette epreuve sa signifie que l'athlete a participe a cette epreuve mais qu'il na rien gagner
+	 */
 	@Override
 	public String toString() {
 	String message = "L' athlete " + nom + " " + prenom + " a participés aux épreuves suivantes : \r\n  ";
 	for (Epreuves epreuve : epreuves) {
-		message += "- "	+ epreuve.getNom() + " (qui consiste a un " + epreuve.getDescription() + ")" ;
 		Boolean win = false;
+		message += "- "	+ epreuve.getNom() + " (qui consiste a un " + epreuve.getDescription() + ")" ;
+
 		for (Medaille medaille : medailles) {
 			if(epreuve.getNom().equals(medaille.getEpreuve().getNom())){
-				 win = true;
+				win = true;
 				message +=  " et a remporté la " + medaille.getCategorieMedaille().getCategories() + " :) \r\n  ";
 			}
 		}
-		if(medailles.isEmpty()) {
+		if(!win) {
 			message += " et n'a pas remporté de medaille :( \r\n  ";
 		}
 		

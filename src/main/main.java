@@ -22,8 +22,10 @@ public class main {
 		
 		
 		
-		// a2 participe a l'epreuves de saut en hauteur mais il ne remporte pas de medaille
+		// a2 participe a l'epreuve de saut en hauteur mais il ne remporte pas de medaille
 		a2.addEpreuve(Epreuves.SAUTHAUTEUR);
+		// a2 remporte une medaille d'argent au lancer de poids 
+		a2.addMedaille(new Medaille(CategorieMedaille.ARGENT, Epreuves.LANCERDEPOIDS  ));
 		System.out.println(a2.toString());
 		
 	}
