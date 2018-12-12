@@ -14,10 +14,10 @@
 		<%=userName%></h1>
 
 	<div style="text-align: right;">
-		<a href="http://localhost:8484/RECOMPENSES_OLYMPIQUES/deconnection ">
+		<a href="<c:url value='/deconnection'/>">
 			<button type=submit class="btn btn-danger">Deconnection</button>
 		</a>
-	 <form style="margin-top : 50px" method = "POST" action="http://localhost:8484/RECOMPENSES_OLYMPIQUES/ShowRecompense">
+	 <form style="margin-top : 50px" method = "POST" action="<c:url value='/ShowRecompense'/>">
 	     <button type="submit" class="btn btn-success">Voir Recompense</button>
 	   	</form>
 	   	
@@ -25,7 +25,7 @@
 		<div class="container">
 
 			<form style="margin-top: 50px" method="POST"
-				action="http://localhost:8484/RECOMPENSES_OLYMPIQUES/AddMedaille">
+				action="<c:url value='/AddMedaille'/>">
 				<div class="form-group" style="text-align: left">
 
 

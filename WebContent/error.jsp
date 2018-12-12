@@ -27,8 +27,8 @@
 				<h1>404</h1>
 			</div>
 			<h2>Oops! Cette page n'existe pas</h2>
-
-			<a href="http://localhost:8484/RECOMPENSES_OLYMPIQUES/">Retour a la page d'accueil</a>
+		<c:url value='/connection'/>
+			<a href="<c:url value='/'/>">Retour a la page d'accueil</a>
 		</div>
 	</div>
 </html>

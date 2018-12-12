@@ -32,7 +32,7 @@ public class deconnection extends HttpServlet {
 		
 		 HttpSession session = request.getSession();
 		 session.invalidate();
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/Connection.jsp");
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/connection.jsp");
 		dispatcher.forward(request, response);
 	}
 

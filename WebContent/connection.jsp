@@ -6,7 +6,7 @@
 
     <div class="container">
 
-	    <form style="margin-top : 50px" method = "POST" action="http://localhost:8484/RECOMPENSES_OLYMPIQUES/connection">
+	    <form style="margin-top : 50px" method = "POST" action="<c:url value='/connection'/>">
 	  <div class="form-group">
 
 	    <input type="text" class="form-control" id="formGroupExampleInput" value="admin" name="userName">
@@ -31,8 +31,8 @@
 
 
 	</form>
-	
-	   <form style="margin-top : 50px" method = "POST" action="http://localhost:8484/RECOMPENSES_OLYMPIQUES/ShowRecompense">
+
+	   <form style="margin-top : 50px" method = "POST" action="<c:url value='/ShowRecompense'/>">
 	     <button type="submit" class="btn btn-success">Voir Recompense</button>
 	   	</form>
 	</div>

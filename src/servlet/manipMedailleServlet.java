@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import Listener.AppliListener;
 import bean.Athletes;
 import bean.Medaille;
 import enums.CategorieMedaille;
@@ -44,7 +45,7 @@ public class manipMedailleServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    HttpSession session = request.getSession();
-		ArrayList <Athletes> athletes = (ArrayList<Athletes>) session.getAttribute("athletes");
+		
 		
 		
 			// si on veux rajouter une medaille a un athlete
@@ -53,7 +54,7 @@ public class manipMedailleServlet extends HttpServlet {
 	    	// on verifie si la medaille n'a pas ete deja attribué
 	    	boolean exist = false;
 	    	
-	    for (Athletes athletes2 : athletes) {
+	    for (Athletes athletes2 : AppliListener.getAthletes()) {
 	    	for (Medaille medaille : athletes2.getMedailles()) {
 	    			if(medaille.getCategorieMedaille().equals(CategorieMedaille.valueOf(request.getParameter("medaille")))){
 	    				if(medaille.getEpreuve().equals(Epreuves.valueOf(request.getParameter("epreuve")))) {
@@ -65,7 +66,7 @@ public class manipMedailleServlet extends HttpServlet {
 	    }
 	    	// si la medaille n'a pas deja ete attribué on la donne 
         if(exist == false){
-        	 for (Athletes athletes2 : athletes) {
+        	 for (Athletes athletes2 : AppliListener.getAthletes()) {
 				if(athletes2.getNom().equals(request.getParameter("athlete"))) {
 					athletes2.addMedaille(new Medaille(CategorieMedaille.valueOf(request.getParameter("medaille")), (Epreuves.valueOf(request.getParameter("epreuve")))));
 					session.setAttribute("errorAddMedaille", null);
@@ -75,7 +76,8 @@ public class manipMedailleServlet extends HttpServlet {
         }else {
         	session.setAttribute("errorAddMedaille", "Medaille deja attribué dans cette epreuve");
         }
-        	 session.setAttribute("athletes", athletes);
+        System.out.println(request.getRequestURL().substring(0, request.getRequestURL().lastIndexOf("/")+1));
+        	 session.setAttribute("athletes", AppliListener.getAthletes());
         	 response.sendRedirect("http://localhost:8484/RECOMPENSES_OLYMPIQUES/connection");
     	}
 	    
@@ -83,8 +85,8 @@ public class manipMedailleServlet extends HttpServlet {
 	    //affichage des recompenses
 	    
 	    if(request.getRequestURI().substring(request.getRequestURI().lastIndexOf("/")+1).equals("ShowRecompense")) {
-	    	
-			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/ShowRecompense.jsp");
+	    	System.out.println("laaaaaaa");
+			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/show_recompense.jsp");
 			dispatcher.forward(request, response);
 	    }
 	    

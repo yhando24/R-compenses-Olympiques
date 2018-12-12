@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import Listener.AppliListener;
 import bean.Athletes;
 import bean.Medaille;
 import enums.CategorieMedaille;
@@ -24,18 +25,7 @@ import enums.Epreuves;
 @WebServlet(urlPatterns = {"/connection"})
 public class servlet_main extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	static ArrayList <Athletes> athletes;
-	static {
-    	
-		athletes = new ArrayList<Athletes>();
-    	
-    	athletes.add(new Athletes("Samir","BEN"));
-    	athletes.add(new Athletes("Youcef","THEBOSS"));
-    	athletes.add(new Athletes("RACHID","CALI"));
-    	athletes.add(new Athletes("YOHAN","BENBOUDAOUD"));
-    	athletes.add(new Athletes("NICOLA","PERSINET"));
-    
-	}
+	
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -50,9 +40,10 @@ public class servlet_main extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    HttpSession session = request.getSession();
-	   	session.setAttribute("athletes", athletes);
+	   	session.setAttribute("athletes", AppliListener.getAthletes());
+	
 		if(session.getAttribute("pseudo") == null) {
-			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/Connection.jsp");
+			RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/connection.jsp");
 			dispatcher.forward(request, response);
 		}else {
 	  		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/connecter.jsp");
